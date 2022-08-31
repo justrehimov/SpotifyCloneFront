@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://kit.fontawesome.com/39c29ffd8b.js" crossorigin="anonymous"></script>
+    <script src="js/jquery.js" type="text/javascript"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
+    <link rel='stylesheet' media='screen and (max-device-width: 720px)' href='css/account.css' type='text/css' />
+    <title>Account</title>
+</head>
+<body>
+<section class="header">
+    <span>Account</span>
+    <button id="btn-logout"><i class="fa-solid fa-arrow-right-from-bracket"></i></button>
+</section>
+
+<section class="content">
+
+    <input type="email" id="email" placeholder="Email">
+    <input type="text" id="username" placeholder="Username">
+    <button id="btn-save">Save</button>
+</section>
+
+<section class="footer">
+    <div class="footer-items">
+        <a href="home.html"><i class="fa-solid fa-house"></i></a>
+        <a href="add_music.html"><i class="fa-solid fa-plus"></i></a>
+        <a href="account.html"><i class="fa-solid fa-user"></i></a>
+    </div>
+</section>
+<script>
+    $('#btn-logout').click(function (){
+        location.href="login.html";
+    })
+</script>
+</body>
+</html>

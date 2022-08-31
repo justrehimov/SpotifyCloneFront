@@ -27,13 +27,15 @@
                     <span class="playing-music-name">Cek</span>
                     <span class="playing-music-artist">Hiss</span>
                 </div>
-                <button class="btn-download"><i class="fa-solid fa-arrow-down"></i></button>
+                <button class="btn-download">
+                    <i class="fa-solid fa-arrow-down"></i>
+                </button>
             </div>
 
             <div class="player">
                 <div class="music-play-items">
                     <button class="btn-play-item"><i class="fa-solid fa-backward-step"></i></button>
-                    <button class="btn-play-item"><i class="fa-solid fa-play"></i></button>
+                    <button value="playing" onclick="playMusic(this)" class="btn-play-item"><i class="fa-solid fa-play"></i></button>
                     <button class="btn-play-item"><i class="fa-solid fa-forward-step"></i></button>
                 </div>
                 <div class="music-range">
@@ -176,8 +178,8 @@
     <section class="footer">
         <div class="footer-items">
             <a href="home.html"><i class="fa-solid fa-house"></i></a>
-            <a><i class="fa-solid fa-plus"></i></a>
-            <a><i class="fa-solid fa-user"></i></a>
+            <a href="add_music.html"><i class="fa-solid fa-plus"></i></a>
+            <a href="account.html"><i class="fa-solid fa-user"></i></a>
         </div>
     </section>
 </div>
