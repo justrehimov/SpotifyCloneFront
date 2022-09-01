@@ -4,7 +4,7 @@ function openMusicBar(event, music_id) {
     $('#music-bar').css('transform', 'translateX(0%)');
     setTimeout(function (){
         setAudioData();
-    },500);
+    },1000);
     setInterval(function (){
         setAudioTime();
     },1000);

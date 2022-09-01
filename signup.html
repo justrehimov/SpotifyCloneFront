@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="js/jquery.js" type="text/javascript"></script>
+    <link rel='stylesheet' media='screen and (max-device-width: 720px)' href='css/loader.css' type='text/css' />
     <link rel='stylesheet' media='screen and (max-device-width: 720px)' href='css/signup.css' type='text/css' />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -21,18 +23,20 @@
 
     <form class="form-register">
         <div class="input-group">
-            <input id="username" type="text" placeholder="Username"/>
+            <input id="username" required type="text" placeholder="Username"/>
         </div>
 
         <div class="input-group">
-            <input id="email" type="text" placeholder="Email"/>
+            <input id="email" required type="email" placeholder="Email"/>
         </div>
 
         <div class="input-group">
-            <input id="password" type="password" placeholder="Password"/>
+            <input id="password" required min="6" type="password" placeholder="Password"/>
         </div>
 
-        <button class="btn-register">Register</button>
+        <button type="button" class="btn-register" id="btn-sign-up">
+            Sign up
+        </button>
 
         <div class="input-group">
             <label>Already you have an account?&nbsp;<a href="login.html">Login</a></label>
@@ -41,5 +45,6 @@
     </form>
 
 </section>
+<script src="js/signup.js"></script>
 </body>
 </html>
