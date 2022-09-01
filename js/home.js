@@ -1,3 +1,20 @@
+$(document).ready(function () {
+    if(!isAuthenticated()){
+        location.href='login.html';
+    }
+    loadMusicItems();
+});
+
+
+function isAuthenticated(){
+    if(localStorage.getItem('user_id')=='null' || localStorage.getItem('access_token')=='null'){
+        return false;
+    }
+    return true;
+}
+
+
+
 function openMusicBar(event, music_id) {
     let music_item = $(event);
     loadMusic();
@@ -46,9 +63,6 @@ function playMusic(event) {
     }
 }
 
-$(document).ready(function () {
-    loadMusicItems();
-});
 
 function loadMusicItems() {
     $.ajax({

@@ -5,7 +5,7 @@ $('#btn-login').click(function (){
         password:$('#password').val()
     };
     $.ajax({
-        url: 'https://spoti-clone.herokuapp.com/api/auth/login',
+        url: 'http://localhost:8080/api/auth/login',
         type: 'POST',
         headers:{'content-type':'application/json'},
         dataType:'json',

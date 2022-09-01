@@ -9,7 +9,7 @@ $('#btn-reset').click(function () {
         confirm_password:$('#confirm_password').val()
     };
     $.ajax({
-        url:'https://spoti-clone.herokuapp.com/api/auth/reset-password/'+token,
+        url:'http://localhost:8080/api/auth/reset-password/'+token,
         type:'POST',
         headers:{'content-type':'application/json'},
         data: JSON.stringify(data),
