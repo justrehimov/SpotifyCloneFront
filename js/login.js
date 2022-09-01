@@ -15,7 +15,7 @@ $('#btn-login').click(function (){
                 stopLoader();
                 localStorage.setItem('user_id',response.result.user_id);
                 localStorage.setItem('access_token', response.result.access_token);
-                location.href='home.html';
+                location.href='index.html';
             }else{
                 stopLoader();
                 alert(response.message);
