@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://kit.fontawesome.com/39c29ffd8b.js" crossorigin="anonymous"></script>
+    <script src="js/jquery.js" type="text/javascript"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
+    <link rel='stylesheet' media='screen and (max-device-width: 720px)' href='css/confirm.css' type='text/css' />
+    <title>Confirm</title>
+</head>
+<body>
+
+<div id="confirm-circle-success">
+    <i class="fa-solid fa-check"></i>
+</div>
+
+<div id="confirm-circle-error">
+    <i class="fa-solid fa-xmark"></i>
+</div>
+
+<label id="message-label"></label>
+
+</body>
+<script>
+    $(document).ready(function () {
+        let params = (new URL(document.location)).searchParams;
+        let token = params.get("token");
+
+        $.ajax({
+            url:'http://localhost:8080/api/auth/confirm/'+token,
+            type:'POST',
+            dataType:'json',
+            success:function (response) {
+                if(!response.error){
+                    $('#confirm-circle-success').show();
+                    $('#message-label').html(response.message);
+                    setTimeout(function (){
+                        location.href='login.html';
+                    },2000);
+                }else{
+                    $('#confirm-circle-error').show();
+                    $('#message-label').html(response.message);
+                }
+            }
+        })
+    });
+</script>
+</html>

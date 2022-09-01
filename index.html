@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/39c29ffd8b.js" crossorigin="anonymous"></script>
+    <script src="js/jquery.js" type="text/javascript"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
+    <link rel='stylesheet' media='screen and (max-device-width: 720px)' href='css/home.css' type='text/css' />
+    <link rel='stylesheet' media='screen and (max-device-width: 720px)' href='css/music-bar.css' type='text/css' />
+    <title>Home</title>
+</head>
+<body>
+
+    <div class="music-bar" id="music-bar">
+        <div id="hidden-music-container">
+            <audio id="audio" controls autoplay></audio>
+        </div>
+        <section class="music-bar-header">
+            <span>Player</span>
+            <button  onclick="closeMusicBar(this)"><i class="fa-solid fa-arrow-right"></i></button>
+        </section>
+        <section class="music-bar-content">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTMEsqNksZgyCVIlEOp1U9aSGZ-1s9a-RWqh_VFFen9MzebQ6uWITSsfNcXH12xWjbamWc&usqp=CAU" class="music-bar-musician-img"/>
+            <div class="player-content">
+                <div class="playing-music-info">
+                    <span class="playing-music-name">Cek</span>
+                    <span class="playing-music-artist">Hiss</span>
+                </div>
+                <button class="btn-download">
+                    <i class="fa-solid fa-arrow-down"></i>
+                </button>
+            </div>
+
+            <div class="player">
+                <div class="music-play-items">
+                    <button class="btn-play-item"><i class="fa-solid fa-backward-step"></i></button>
+                    <button value="playing" onclick="playMusic(this)" class="btn-play-item"><i class="fa-solid fa-pause"></i></button>
+                    <button class="btn-play-item"><i class="fa-solid fa-forward-step"></i></button>
+                </div>
+                <div class="music-range">
+                    <input type="range" oninput="changeAudioTime(this)" onchange="changeAudioTime(this)" id="music-range-input" value="0" min="0" max="0"/>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div class="content">
+    <section class="header">
+        <span>Search</span>
+        <input type="search" placeholder="Which songs would you to listen?">
+    </section>
+
+    <section class="body" id="music-body">
+        <div class="music-container" onclick="openMusicBar(this)">
+            <img class="music-background-img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTMEsqNksZgyCVIlEOp1U9aSGZ-1s9a-RWqh_VFFen9MzebQ6uWITSsfNcXH12xWjbamWc&usqp=CAU"/>
+            <div class="music-data">
+                <div class="music-info">
+                    <span class="music-name">Cek</span>
+                    <span class="musician-name">Hiss</span>
+                </div>
+                <button class="btn-download"><i class="fa-solid fa-arrow-down"></i></button>
+            </div>
+        </div>
+
+    </section>
+
+   
+    <section class="footer">
+        <div class="footer-items">
+            <a href="index.html"><i class="fa-solid fa-house"></i></a>
+            <a href="add_music.html"><i class="fa-solid fa-plus"></i></a>
+            <a href="account.html"><i class="fa-solid fa-user"></i></a>
+        </div>
+    </section>
+</div>
+
+
+<script src="js/home.js"></script>
+</body>
+</html>
