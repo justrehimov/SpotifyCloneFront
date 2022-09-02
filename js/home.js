@@ -47,8 +47,8 @@ function setAllMusicData(music_id){
             let music_current_time = audio.currentTime;
             $('#music-range-input').attr('value', parseInt(music_current_time,10));
             $('.current-second').html(calculateDurationToTime(music_current_time));
-        },100);
-    },100);
+        },200);
+    },1000);
 }
 
 
