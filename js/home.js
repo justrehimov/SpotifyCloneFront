@@ -25,7 +25,7 @@ function setAllMusicData(music_id){
     let music_storage = getStorage(music_data.storage_music_id);
     let audio = document.getElementById('audio');
     $('#music-range-input').attr('max',parseInt(audio.duration,10))
-
+    $('.music-duration').html(calculateDurationToTime(audio.duration));
     $('#audio').attr('src',music_storage.url);
     let image_storage = getStorage(music_data.storage_image_id);
     fetch(music_storage.url)
@@ -43,7 +43,6 @@ function setAllMusicData(music_id){
         $('#music-range-input').attr('min',0);
         setInterval(function () {
             let music_current_time = audio.currentTime;
-            $('.music-duration').html(calculateDurationToTime(music_duration));
             $('#music-range-input').attr('value', parseInt(music_current_time,10));
             $('.current-second').html(calculateDurationToTime(music_current_time));
         },200);
