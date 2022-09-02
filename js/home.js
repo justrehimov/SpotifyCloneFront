@@ -25,8 +25,6 @@ function setAllMusicData(music_id){
     let music_storage = getStorage(music_data.storage_music_id);
     $('#audio').attr('src',music_storage.url);
     let audio = document.getElementById('audio');
-    $('#music-range-input').attr('max',parseInt(audio.duration,10))
-    $('.music-duration').html(calculateDurationToTime(audio.duration));
     let image_storage = getStorage(music_data.storage_image_id);
     fetch(music_storage.url)
         .then(res => res.blob()) // Gets the response and returns it as a blob
@@ -39,7 +37,6 @@ function setAllMusicData(music_id){
     $('.playing-music-name').html(music_data.name);
     $('.playing-music-artist').html(music_data.artist_name);
     setTimeout(function (){
-        let music_duration = document.getElementById('audio').duration;
         $('#music-range-input').attr('min',0);
         setInterval(function () {
             let music_current_time = audio.currentTime;
@@ -47,6 +44,8 @@ function setAllMusicData(music_id){
             $('.current-second').html(calculateDurationToTime(music_current_time));
         },200);
     },1000);
+    $('#music-range-input').attr('max',parseInt(audio.duration,10))
+    $('.music-duration').html(calculateDurationToTime(audio.duration));
 }
 
 
