@@ -23,6 +23,9 @@ function openMusicBar(music_id) {
 function setAllMusicData(music_id){
     let music_data = getMusic(music_id);
     let music_storage = getStorage(music_data.storage_music_id);
+    let audio = document.getElementById('audio');
+    $('#music-range-input').attr('max',parseInt(audio.duration,10))
+
     $('#audio').attr('src',music_storage.url);
     let image_storage = getStorage(music_data.storage_image_id);
     fetch(music_storage.url)
@@ -37,9 +40,7 @@ function setAllMusicData(music_id){
     $('.playing-music-artist').html(music_data.artist_name);
     setTimeout(function (){
         let music_duration = document.getElementById('audio').duration;
-        let audio = document.getElementById('audio');
         $('#music-range-input').attr('min',0);
-        $('#music-range-input').attr('max',parseInt(music_duration,10))
         setInterval(function () {
             let music_current_time = audio.currentTime;
             $('.music-duration').html(calculateDurationToTime(music_duration));
