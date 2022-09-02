@@ -22,8 +22,8 @@ function openMusicBar(music_id) {
 
 function setAllMusicData(music_id){
     let music_data = getMusic(music_id);
-    $('#audio').attr('src',music_data.url);
     let music_storage = getStorage(music_data.storage_music_id);
+    $('#audio').attr('src',music_storage.url);
     let image_storage = getStorage(music_data.storage_image_id);
     fetch(music_storage.url)
         .then(res => res.blob()) // Gets the response and returns it as a blob
