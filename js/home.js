@@ -91,7 +91,7 @@ function playMusic(event) {
     }
 }
 
-$('#search-input').change(function (){
+$('#search-input').keyup(function (){
     let filter = $('#search-input').val();
     loadMusicItems(filter);
 })
