@@ -32,8 +32,6 @@ function setAllMusicData(music_id){
             $('.btn-download').attr('href',objectURL);
             $('.btn-download').attr('download',music_data.name);
         });
-
-    $('#audio').attr('src',music_data.url);
     $('#music-bar-musician-img').attr('src',image_storage.url);
     $('.playing-music-name').html(music_data.name);
     $('.playing-music-artist').html(music_data.artist_name);
@@ -42,9 +40,9 @@ function setAllMusicData(music_id){
         let audio = document.getElementById('audio');
         $('#music-range-input').attr('min',0);
         $('#music-range-input').attr('max',parseInt(music_duration,10))
-        $('.music-duration').html(calculateDurationToTime(music_duration));
         setInterval(function () {
             let music_current_time = audio.currentTime;
+            $('.music-duration').html(calculateDurationToTime(music_duration));
             $('#music-range-input').attr('value', parseInt(music_current_time,10));
             $('.current-second').html(calculateDurationToTime(music_current_time));
         },200);
