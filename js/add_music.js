@@ -39,7 +39,7 @@ function onSelectMusicFile(event){
 
 function deleteFile(id){
     $.ajax({
-        url:'http://localhost:8080/api/storage/' + id,
+        url:'https://spoti-clone.herokuapp.com/api/storage/' + id,
         type: 'DELETE',
         dataType:'json',
         headers:{'Authorization':'Bearer ' + localStorage.getItem('access_token')},
@@ -59,7 +59,7 @@ function uploadMusicFile(event){
     let formData = new FormData();
     formData.append('file', event.files[0]);
     $.ajax({
-        url:'http://localhost:8080/api/storage/upload',
+        url:'https://spoti-clone.herokuapp.com/api/storage/upload',
         type:'POST',
         dataType: 'json',
         headers:{'Authorization':'Bearer ' + localStorage.getItem('access_token')},
@@ -91,7 +91,7 @@ function uploadImageFile(event){
     let formData = new FormData();
     formData.append('file', event.files[0]);
     $.ajax({
-        url:'http://localhost:8080/api/storage/upload',
+        url:'https://spoti-clone.herokuapp.com/api/storage/upload',
         type:'POST',
         dataType: 'json',
         headers:{'Authorization':'Bearer ' + localStorage.getItem('access_token')},
@@ -126,7 +126,7 @@ $('#music-upload-btn').click(function (){
     };
 
     $.ajax({
-        url:'http://localhost:8080/api/music',
+        url:'https://spoti-clone.herokuapp.com/api/music',
         type:'POST',
         dataType: 'json',
         headers:{

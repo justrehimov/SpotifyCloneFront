@@ -99,7 +99,7 @@ $('#search-input').change(function (){
 
 function loadMusicItems(filter) {
     $.ajax({
-        url: "http://localhost:8080/api/music/list",
+        url: "https://spoti-clone.herokuapp.com/api/music/list",
         type: "GET",
         data:{filter:filter},
         headers:{
@@ -142,7 +142,7 @@ function loadMusicItems(filter) {
 function getMusic(id){
     let music_data = null;
     $.ajax({
-        url:"http://localhost:8080/api/music/" + id,
+        url:"https://spoti-clone.herokuapp.com/api/music/" + id,
         type:"GET",
         headers:{
             'Authorization':'Bearer ' + localStorage.getItem('access_token')
@@ -169,7 +169,7 @@ function getMusic(id){
 function getStorage(id){
     let storage = null;
     $.ajax({
-        url:'http://localhost:8080/api/storage/'+id,
+        url:'https://spoti-clone.herokuapp.com/api/storage/'+id,
         type:'GET',
         async:false,
         global:false,

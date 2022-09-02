@@ -15,7 +15,7 @@ function isAuthenticated(){
 
 function setUserData(){
     $.ajax({
-        url: "http://localhost:8080/api/user/" + localStorage.getItem('user_id'),
+        url: "https://spoti-clone.herokuapp.com/api/user/" + localStorage.getItem('user_id'),
         type: 'GET',
         headers:{
             'Authorization':'Bearer ' + localStorage.getItem('access_token')
@@ -43,7 +43,7 @@ $('#btn-save').click(function (){
     };
 
     $.ajax({
-        url:'http://localhost:8080/api/user/' + localStorage.getItem('user_id'),
+        url:'https://spoti-clone.herokuapp.com/api/user/' + localStorage.getItem('user_id'),
         type: 'PUT',
         headers: {
             'Authorization':'Bearer ' + localStorage.getItem('access_token'),

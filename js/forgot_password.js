@@ -1,7 +1,7 @@
 $('#btn-send').click(function () {
     startLoader();
     $.ajax({
-        url:'http://localhost:8080/api/auth/forgot-password',
+        url:'https://spoti-clone.herokuapp.com/api/auth/forgot-password',
         type:'POST',
         dataType:'json',
         data:{email:$('#email').val()},
