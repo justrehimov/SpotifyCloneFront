@@ -21,18 +21,18 @@
         </div>
         <section class="music-bar-header">
             <span>Player</span>
-            <button  onclick="closeMusicBar(this)"><i class="fa-solid fa-arrow-right"></i></button>
+            <button  onclick="closeMusicBar()"><i class="fa-solid fa-arrow-right"></i></button>
         </section>
         <section class="music-bar-content">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTMEsqNksZgyCVIlEOp1U9aSGZ-1s9a-RWqh_VFFen9MzebQ6uWITSsfNcXH12xWjbamWc&usqp=CAU" class="music-bar-musician-img"/>
+            <img id="music-bar-musician-img" class="music-bar-musician-img"/>
             <div class="player-content">
                 <div class="playing-music-info">
                     <span class="playing-music-name">Cek</span>
                     <span class="playing-music-artist">Hiss</span>
                 </div>
-                <button class="btn-download">
+                <a class="btn-download">
                     <i class="fa-solid fa-arrow-down"></i>
-                </button>
+                </a>
             </div>
 
             <div class="player">
@@ -41,8 +41,12 @@
                     <button value="playing" onclick="playMusic(this)" class="btn-play-item"><i class="fa-solid fa-pause"></i></button>
                     <button class="btn-play-item"><i class="fa-solid fa-forward-step"></i></button>
                 </div>
-                <div class="music-range">
-                    <input type="range" oninput="changeAudioTime(this)" onchange="changeAudioTime(this)" id="music-range-input" value="0" min="0" max="0"/>
+                <div class="music-range" >
+                    <input type="range" disabled id="music-range-input" value="0" min="0" max="0"/>
+                    <div id="music-times">
+                        <span class="current-second"></span>
+                        <span class="music-duration"></span>
+                    </div>
                 </div>
             </div>
         </section>
@@ -51,21 +55,10 @@
     <div class="content">
     <section class="header">
         <span>Search</span>
-        <input type="search" placeholder="Which songs would you to listen?">
+        <input type="search" id="search-input" placeholder="Which songs would you to listen?">
     </section>
 
     <section class="body" id="music-body">
-        <div class="music-container" onclick="openMusicBar(this)">
-            <img class="music-background-img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTMEsqNksZgyCVIlEOp1U9aSGZ-1s9a-RWqh_VFFen9MzebQ6uWITSsfNcXH12xWjbamWc&usqp=CAU"/>
-            <div class="music-data">
-                <div class="music-info">
-                    <span class="music-name">Cek</span>
-                    <span class="musician-name">Hiss</span>
-                </div>
-                <button class="btn-download"><i class="fa-solid fa-arrow-down"></i></button>
-            </div>
-        </div>
-
     </section>
 
    

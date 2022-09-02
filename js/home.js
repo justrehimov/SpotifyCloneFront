@@ -2,7 +2,7 @@ $(document).ready(function () {
     if(!isAuthenticated()){
         location.href='login.html';
     }
-    loadMusicItems();
+    loadMusicItems(null);
 });
 
 
@@ -15,22 +15,51 @@ function isAuthenticated(){
 
 
 
-function openMusicBar(event, music_id) {
-    let music_item = $(event);
-    loadMusic();
+function openMusicBar(music_id) {
+    setAllMusicData(music_id);
     $('#music-bar').css('transform', 'translateX(0%)');
-    setTimeout(function (){
-        setAudioData();
-    },1000);
-    setInterval(function (){
-        setAudioTime();
-    },1000);
 }
 
-function closeMusicBar(event) {
-    let music_bar_close_btn = $(event);
+function setAllMusicData(music_id){
+    let music_data = getMusic(music_id);
+    let music_storage = getStorage(music_data.storage_music_id);
+    let image_storage = getStorage(music_data.storage_image_id);
+    fetch(music_storage.url)
+        .then(res => res.blob()) // Gets the response and returns it as a blob
+        .then(blob => {
+            let objectURL = URL.createObjectURL(blob);
+            $('#audio').attr('src',objectURL);
+            $('.btn-download').attr('href',objectURL);
+            $('.btn-download').attr('download',music_data.name);
+        });
+
+    $('#audio').attr('src',music_data.url);
+    $('#music-bar-musician-img').attr('src',image_storage.url);
+    $('.playing-music-name').html(music_data.name);
+    $('.playing-music-artist').html(music_data.artist_name);
+    setTimeout(function (){
+        let music_duration = document.getElementById('audio').duration;
+        let audio = document.getElementById('audio');
+        $('#music-range-input').attr('min',0);
+        $('#music-range-input').attr('max',parseInt(music_duration,10))
+        $('.music-duration').html(calculateDurationToTime(music_duration));
+        setInterval(function () {
+            let music_current_time = audio.currentTime;
+            $('#music-range-input').attr('value', parseInt(music_current_time,10));
+            $('.current-second').html(calculateDurationToTime(music_current_time));
+        },100);
+    },100);
+}
+
+
+document.getElementById('music-range-input').addEventListener('change',function() {
+    this.setAttribute('value',this.value);
+});
+
+function closeMusicBar() {
     $('#music-bar').css('transform', 'translateX(-100%)');
 }
+
 
 function playMusic(event) {
     let play_buton = $(event);
@@ -63,63 +92,111 @@ function playMusic(event) {
     }
 }
 
+$('#search-input').change(function (){
+    let filter = $('#search-input').val();
+    loadMusicItems(filter);
+})
 
-function loadMusicItems() {
+function loadMusicItems(filter) {
     $.ajax({
-        url: "data/music_data.json",
+        url: "http://localhost:8080/api/music/list",
         type: "GET",
+        data:{filter:filter},
+        headers:{
+            'Authorization':'Bearer ' + localStorage.getItem('access_token')
+        },
         dataType: "json",
-        success: function (data) {
-            let html = "";
-            for (let i = 0; i < data.musics.length; i++) {
-                let element = data.musics[i];
-                let item =
-                    "<div class='music-container' onclick='openMusicBar(this," + element.id + ")'>\n" +
-                    "            <img class='music-background-img' src='" + element.pictureUrl + "'/>\n" +
-                    "            <div class='music-data'>\n" +
-                    "                <div class='music-info'>\n" +
-                    "                    <span class='music-name'>" + element.name + "</span>\n" +
-                    "                    <span class='musician-name'>" + element.artist + "</span>\n" +
-                    "                </div>\n" +
-                    "                <button class='btn-download'><i class='fa-solid fa-arrow-down'></i></button>\n" +
-                    "            </div>\n" +
-                    "        </div>";
-                html += item;
+        success: function (response) {
+            if(!response.error){
+                let html = '';
+                response.result.forEach(function (music) {
+                    let image_storage = getStorage(music.storage_image_id);
+                    let music_item =
+                        "<div class='music-container' onclick='openMusicBar(" + music.id + ")'>\n" +
+                        "            <img class='music-background-img' src='" + image_storage.url + "'/>\n" +
+                        "            <div class='music-data'>\n" +
+                        "                <div class='music-info'>\n" +
+                        "                    <span class='music-name'>" + music.name + "</span>\n" +
+                        "                    <span class='musician-name'>" + music.artist_name + "</span>\n" +
+                        "                </div>\n" +
+                        "            </div>\n" +
+                        "        </div>";
+                    html+=music_item
+                });
+                $('#music-body').html(html);
+
+            }else{
+                if(response.message.includes('token')){
+                    alert('Your session has expired, you will redirecting login page');
+                    location.href='login.html'
+                }else{
+                    alert(response.message);
+                }
             }
-            $('#music-body').html(html);
         }
     });
 }
 
-function setAudioData(){
-    let duration = parseInt(document.getElementById('audio').duration, 10);
-    let range_input = document.getElementById('music-range-input');
-    range_input.setAttribute('max', duration);
-    range_input.setAttribute("min", 0);
-}
 
 
-function setAudioTime(){
-    let currentTime = parseInt(document.getElementById('audio').currentTime, 10);
-    let range_input = document.getElementById('music-range-input');
-    range_input.setAttribute('value', currentTime);
-}
-
-function changeAudioTime(event){
-    console.log(event.trigger().value);
-    let range = $(event);
-    let duration = range.val();
-    document.getElementById('audio').currenTime=duration;
-}
-
-
-function loadMusic(){
+function getMusic(id){
+    let music_data = null;
     $.ajax({
-        url:"data/music.json",
+        url:"http://localhost:8080/api/music/" + id,
         type:"GET",
+        headers:{
+            'Authorization':'Bearer ' + localStorage.getItem('access_token')
+        },
+        async:false,
+        global:false,
         dataType:"json",
-        success: function (data){
-            $('#audio').attr('src', data.url);
+        success: function (response){
+            if(!response.error){
+                music_data = response.result;
+            }else{
+                if(response.message.includes('token')){
+                    alert('Your session has expired, you will redirecting login page');
+                    location.href='login.html'
+                }else{
+                    alert(response.message);
+                }
+            }
         }
     });
+    return music_data;
+}
+
+function getStorage(id){
+    let storage = null;
+    $.ajax({
+        url:'http://localhost:8080/api/storage/'+id,
+        type:'GET',
+        async:false,
+        global:false,
+        headers:{
+            'Authorization':'Bearer ' + localStorage.getItem('access_token')
+        },
+        dataType:'json',
+        success: function (response) {
+            if(!response.error){
+               storage = response.result;
+            }else{
+                if(response.message.includes('token')){
+                    alert('Your session has expired, you will redirecting login page');
+                    location.href='login.html'
+                }else{
+                    alert(response.message);
+                }
+            }
+        }
+    });
+    return storage;
+}
+
+
+function calculateDurationToTime(duration){
+    let time = parseInt(duration);
+    let minutes = parseInt(time/60,10);
+    let seconds = parseInt(time - (minutes*60),10);
+    return minutes + ':' + (seconds<10?'0'+seconds:seconds);
 }

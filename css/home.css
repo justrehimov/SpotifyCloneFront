@@ -81,6 +81,12 @@ body{
 }
 
 .btn-download{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    background: white;
+    color: black;
     width: 3rem;
     height: 3rem;
     border: none;

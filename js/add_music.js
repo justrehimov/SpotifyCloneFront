@@ -138,6 +138,7 @@ $('#music-upload-btn').click(function (){
             if(!response.error){
                 stopLoader();
                 alert('Music uploaded');
+                location.reload();
             }else{
                 stopLoader();
                 if(response.message.includes('token')){
@@ -145,6 +146,7 @@ $('#music-upload-btn').click(function (){
                     location.href='login.html'
                 }else{
                     alert(response.message);
+                    location.reload();
                 }
             }
         }

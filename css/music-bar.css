@@ -143,7 +143,8 @@
 
 .music-range{
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: flex-start;
     align-items: center;
     width: 100%;
     height: auto;
@@ -152,6 +153,26 @@
 }
 #music-range-input{
     width: 100%;
+}
+
+#music-times{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0;
+}
+
+.current-second{
+    display: flex;
+    color: white;
+    font-weight: bold;
+}
+
+.music-duration{
+    display: flex;
+    color: white;
+    font-weight: bold;
 }
 
 input[type=range] {
@@ -183,4 +204,5 @@ input[type=range]::-moz-range-thumb {
     border-radius: 50%;
     background: #ffffff;
 }
+
 
