@@ -17,7 +17,9 @@
 
     <div class="music-bar" id="music-bar">
         <div id="hidden-music-container">
-            <audio id="audio" controls autoplay preload="metadata"></audio>
+            <audio id="audio" controls autoplay preload="metadata">
+                <source id="audio-src" src="">
+            </audio>
         </div>
         <section class="music-bar-header">
             <span>Player</span>
@@ -27,8 +29,8 @@
             <img id="music-bar-musician-img" class="music-bar-musician-img"/>
             <div class="player-content">
                 <div class="playing-music-info">
-                    <span class="playing-music-name">Cek</span>
-                    <span class="playing-music-artist">Hiss</span>
+                    <span class="playing-music-name"></span>
+                    <span class="playing-music-artist"></span>
                 </div>
                 <a class="btn-download">
                     <i class="fa-solid fa-arrow-down"></i>

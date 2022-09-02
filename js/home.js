@@ -23,7 +23,7 @@ function openMusicBar(music_id) {
 function setAllMusicData(music_id){
     let music_data = getMusic(music_id);
     let music_storage = getStorage(music_data.storage_music_id);
-    $('#audio').attr('src',music_storage.url);
+    $('#audio-src').attr('src',music_storage.url);
     let audio = document.getElementById('audio');
     $('#music-range-input').attr('max',parseInt(audio.duration,10))
     $('.music-duration').html(calculateDurationToTime(audio.duration));
